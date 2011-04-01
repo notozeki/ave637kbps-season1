@@ -42,10 +42,11 @@ Map::Map(const char* name, const char* init_data)
 	mCells.setSize(max_x, y);
 
 	// マップの各エントリを初期化
+	x = 0;
+	y = 0;
 	for (int i = 0; init_data[i] != '\0'; i++) {
 		if ('0' <= init_data[i] && init_data[i] <= '9') {
 			mCells(x, y).setParam(x, y, init_data[i] - '0');
-			//printf("debug: %d\n", mCells(x, y).height());
 			x++;
 		}
 		else if (init_data[i] == 's') {
@@ -81,7 +82,7 @@ void Map::heightcat_view(int level) const
 			if (c < 0) {
 				printf("~");
 			}
-			else if (c == level) {
+			else if (c <= level) {
 				printf("_");
 			}
 			else {
