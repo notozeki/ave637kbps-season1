@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "Map.hpp"
 
-char* gMapData = 
+const char* gMapData = 
 	"ssssssss\n"
 	"s000000s\n"
 	"ss01110s\n"
@@ -14,7 +15,7 @@ char* gMapData =
 int main(int argc, char* argv[])
 {
 	if (argc < 3) {
-		printf("usage: %s mapname depth", argv[0]);
+		printf("usage: %s mapname depth\n", argv[0]);
 		return 0;
 	}
 

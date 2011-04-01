@@ -19,7 +19,7 @@ private:
 
 class Map {
 public:
-	Map(char* name, char* init_data);
+	Map(const char* name, const char* init_data);
 	~Map();
 	void draw() const;
 	void heightcat_view(int level) const; // デバッグ用

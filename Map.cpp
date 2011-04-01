@@ -1,10 +1,13 @@
 #include <stdio.h>
-#incldue "Map.hpp"
+#include <string.h>
+#include "Map.hpp"
 #include "Array2D.hpp"
 
-Map::Map(char* name, char* init_data)
-	: mName(name)
+Map::Map(const char* name, const char* init_data)
 {
+	// マップネーム初期化
+	mName = strdup(name);
+
 	// セルのサイズ測定と初期化
 	int x = 0;
 	int max_x = 0;
@@ -42,6 +45,7 @@ Map::Map(char* name, char* init_data)
 	for (int i = 0; init_data[i] != '\0'; i++) {
 		if ('0' <= init_data[i] && init_data[i] <= '9') {
 			mCells(x, y).setParam(x, y, init_data[i] - '0');
+			//printf("debug: %d\n", mCells(x, y).height());
 			x++;
 		}
 		else if (init_data[i] == 's') {
@@ -56,6 +60,10 @@ Map::Map(char* name, char* init_data)
 			/* do nothing */;
 		}
 	}
+}
+
+Map::~Map()
+{
 }
 
 void Map::draw() const
@@ -80,9 +88,17 @@ void Map::heightcat_view(int level) const
 				printf(".");
 			}
 		}
+		printf("\n");
 	}
 }
 
+MapEntry::MapEntry()
+{
+}
+
+MapEntry::~MapEntry()
+{
+}
 
 void MapEntry::setParam(int x, int y, int height)
 {
