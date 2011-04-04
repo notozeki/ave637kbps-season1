@@ -16,7 +16,7 @@ public:
 		mHeight = height;
 		mArray = new T[width * height];
 	}
-	~Array2D() {}
+	~Array2D() {DELARY(mArray);}
 	T& operator()(int x, int y) {return mArray[mWidth * y + x];}
 	const T& operator()(int x, int y) const {return mArray[mWidth * y + x];}
 	int width() const {return mWidth;}
