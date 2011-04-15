@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <GL/glut.h>
 #include "Map.hpp"
+#include "GL.hpp"
 
 char* readFile(const char* filename)
 {
@@ -28,16 +30,20 @@ char* readFile(const char* filename)
 
 int main(int argc, char* argv[])
 {
-	if (argc < 3) {
-		printf("usage: %s mapname depth\n", argv[0]);
+	if (argc < 2) {
+		printf("usage: %s mapname\n", argv[0]);
 		return 0;
 	}
 
 	char* map_data = readFile(argv[1]);
-	int level = atoi(argv[2]);
 	Map map("hoge", map_data);
 
-	map.heightcat_view(level);
+	glutInit(&argc, argv);
+	glutCreateWindow("My Sim");
+	glutDisplayFunc(GL::display);
+	glutMainLoop();
+
+	//map.heightcat_view(level);
 
 	delete[] map_data;
 	return 0;

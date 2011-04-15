@@ -70,6 +70,7 @@ Map::~Map()
 void Map::draw() const
 {
 	/* not implemented */
+	
 }
 
 void Map::heightcat_view(int level) const
