@@ -2,6 +2,7 @@
 #include <string.h>
 #include "Map.hpp"
 #include "Array2D.hpp"
+#include "GL.hpp"
 
 Map::Map(const char* name, const char* init_data)
 {
@@ -69,7 +70,14 @@ Map::~Map()
 
 void Map::draw() const
 {
-	/* not implemented */
+	int width = mCells.width();
+	int height = mCells.height();
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
+			int z = mCells(x, y).height();
+			GL::drawMapCell(x, y, z);
+		}
+	}
 	
 }
 

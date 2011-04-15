@@ -1,5 +1,5 @@
 CC=g++
-CCOPT=-lglut -lm
+CCOPT=-lglut -lGL -lGLU -lm
 DEBUG=-g
 
 3d-show-map: main.cpp Map.cpp GL.cpp

@@ -36,11 +36,17 @@ int main(int argc, char* argv[])
 	}
 
 	char* map_data = readFile(argv[1]);
-	Map map("hoge", map_data);
+	//Map map("hoge", map_data);
 
+	glutInitWindowSize(400, 400);
 	glutInit(&argc, argv);
 	glutCreateWindow("My Sim");
+
 	glutDisplayFunc(GL::display);
+	glutReshapeFunc(GL::resize);
+
+	GL::init("hoge", map_data);
+
 	glutMainLoop();
 
 	//map.heightcat_view(level);
