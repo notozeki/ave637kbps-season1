@@ -21,6 +21,8 @@ class Map {
 public:
 	Map(const char* name, const char* init_data);
 	~Map();
+	int width() const;
+	int height() const;
 	void draw() const;
 	void heightcat_view(int level) const; // デバッグ用
 private:

@@ -9,7 +9,7 @@ char* readFile(const char* filename)
 	FILE* fp;
 	fp = fopen(filename, "r");
 	if (fp == NULL) {
-		printf("con't open %s\n", filename);
+		printf("can't open %s\n", filename);
 		exit(0);
 	}
 
@@ -38,16 +38,10 @@ int main(int argc, char* argv[])
 	char* map_data = readFile(argv[1]);
 	//Map map("hoge", map_data);
 
-	glutInitWindowSize(400, 400);
-	glutInit(&argc, argv);
-	glutCreateWindow("My Sim");
+	GL::init(&argc, argv,
+		 "hoge", map_data, 400, 400);
 
-	glutDisplayFunc(GL::display);
-	glutReshapeFunc(GL::resize);
-
-	GL::init("hoge", map_data);
-
-	glutMainLoop();
+	GL::mainLoop();
 
 	//map.heightcat_view(level);
 

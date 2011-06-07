@@ -68,6 +68,16 @@ Map::~Map()
 {
 }
 
+int Map::width() const
+{
+	return mCells.width();
+}
+
+int Map::height() const
+{
+	return mCells.height();
+}
+
 void Map::draw() const
 {
 	int width = mCells.width();
@@ -101,6 +111,7 @@ void Map::heightcat_view(int level) const
 		printf("\n");
 	}
 }
+
 
 MapEntry::MapEntry()
 {
