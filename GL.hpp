@@ -3,6 +3,7 @@
 
 #include "Vector.hpp"
 class Map;
+class StructureManager;
 
 class GL {
 public:
@@ -27,6 +28,7 @@ private:
 		MB_MIDDLE,
 	} MouseButton;
 	static Map* mMap;
+	static StructureManager* mStructureManager;
 
 	static MouseButton mMouseButton;
 	static int mMouseBuf[2];

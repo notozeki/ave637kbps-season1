@@ -4,8 +4,11 @@
 #include "Map.hpp"
 #include "GL.hpp"
 #include "Vector.hpp"
+#include "StructureManager.hpp"
+#include "SimpleStructure.hpp"
 
 Map* GL::mMap = 0;
+StructureManager* GL::mStructureManager = 0;
 
 GL::MouseButton GL::mMouseButton;
 int GL::mMouseBuf[2];
@@ -35,6 +38,7 @@ void drawSquare() // 妥協
 	glEnd();
 }
 
+
 void GL::drawMapCell(int x, int y, int z)
 {
 	glLoadIdentity();
@@ -58,6 +62,10 @@ void GL::init(int* argcp, char** argv,
 	glEndList();
 
 	mMap = new Map(name, init_data);
+	mStructureManager = new StructureManager();
+	Structure* t = new SimpleStructure();
+	t->setLocate(1, 1);
+	mStructureManager->addStructure(t);
 
 	mViewpoint.setComp(mMap->width() / 2.0, mMap->height() / 2.0, 0.0);
 	mCameraDir.setComp(0.0, 1.0, 10.0);
@@ -70,7 +78,7 @@ void GL::init(int* argcp, char** argv,
 	/* OpenGL, GLUTの設定 */
 	glutInitWindowSize(mScreenX, mScreenY);
 	glutInit(argcp, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_RGBA/* | GLUT_DEPTH*/);
 	glutCreateWindow("My Sim");
 
 	glutDisplayFunc(GL::display);
@@ -79,7 +87,7 @@ void GL::init(int* argcp, char** argv,
 	glutMotionFunc(GL::motion);
 	glutKeyboardFunc(GL::keyboard);
 
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 
@@ -91,6 +99,7 @@ void GL::display()
 
 	//	glCallList(PRI_SQUARE);// ほんとはこれしたい
 	mMap->draw();
+	mStructureManager->draw();
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
